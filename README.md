@@ -27,6 +27,7 @@ make
 ![运行截图](./doc/img.png)
 
 ![运行截图](./doc/img_1.png)
+![运行截图](./doc/img_2.png)
 
 
 
