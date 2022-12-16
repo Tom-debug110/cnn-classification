@@ -6,6 +6,7 @@
 #include<metrics.hpp>
 #include<func.hpp>
 
+// hello
 int main(int argc, char **argv) {
 
     std::cout << "OpenCV " << CV_VERSION << std::endl;
