@@ -9,6 +9,8 @@
 // hello
 int main(int argc, char **argv) {
 
+    setbuf(stdout, 0);
+
     std::cout << "OpenCV " << CV_VERSION << std::endl;
     std::cout << "Clang " << __VERSION__ << std::endl;
 
@@ -76,12 +78,13 @@ int main(int argc, char **argv) {
         trainEvaluator.compute(predict, sample.second);
         ++curIter;
 
-        printf("\rTrain===> [batch %d/%d] [loss %.3f] [Accuracy %4.3f]", i, totalIters, meanLoss / curIter,trainEvaluator.get());
+        printf("\rTrain===> [batch %d/%d] [loss %.3f] [Accuracy %4.3f]", i, totalIters, meanLoss / curIter,
+               trainEvaluator.get());
 
 
         // 开始验证
         if (i % validInters == 0) {
-            printf("[开始验证]\n\n");
+            printf("\n[开始验证]\n\n");
             cnn::architectures::WithOutGrad guard();
             float meanValidLoss = 0.f;
             ClassificationEvaluator validEvaluator;
@@ -102,7 +105,7 @@ int main(int argc, char **argv) {
 
                 validEvaluator.compute(predict, sample.second);
 
-                printf("\rTrain===> [batch %d/%d] [loss %.3f] [Accuracy %4.3f]", s, samplesNum, meanValidLoss / s,
+                printf("\rValid===> [batch %d/%d] [loss %.3f] [Accuracy %4.3f]", s, samplesNum, meanValidLoss / s,
                        validEvaluator.get());
             }
 
