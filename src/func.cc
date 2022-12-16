@@ -30,7 +30,7 @@ std::vector<cnn::tensor> softMax(const std::vector<cnn::tensor> &input) {
 
         for (int i = 0; i < numOfClasses; ++i) {
             probs->getData()[i] /= sumValue;
-            if (::isnan(probs->getData()[i])) {
+            if (std::isnan(probs->getData()[i])) {
                 probs->getData()[i] = 0.f;
             }
         }
