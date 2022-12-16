@@ -15,33 +15,33 @@ cnn::architectures::AlexNet::AlexNet(const int numOfClasses, const bool batchNor
     // batchSize x16x111x111 ---> batchSize * 16*55*55
     this->layerSequence_.emplace_back(std::make_shared<MaxPool2D>("max_poll_1", 2, 2));
 
-//    //TODO 第三层 卷积层 + ReLU + BatchNorm
-//    // batchSize x16x55x55 ---> batchSize *32*27*27
-//    this->layerSequence_.emplace_back(std::make_shared<Conv2D>("conv_layer_2", 16, 32, 3));
-//    if (batchNorm) {
-//        this->layerSequence_.emplace_back(std::make_shared<BatchNorm2D>("vn_layer_2", 32));
-//    }
-//    this->layerSequence_.emplace_back(std::make_shared<ReLU>("relu_layer_2"));
-//
-//    //TODO 第四层 卷积层 + ReLU + BatchNorm
-//    // batchSize x32x27x27 ---> batchSize*64*13*13
-//    this->layerSequence_.emplace_back(std::make_shared<Conv2D>("conv_layer_3", 32, 64, 3));
-//    if (batchNorm) {
-//        this->layerSequence_.emplace_back(std::make_shared<BatchNorm2D>("vn_layer_3", 64));
-//    }
-//    this->layerSequence_.emplace_back(std::make_shared<ReLU>("relu_layer_3"));
-//
-//    //TODO 第五层 卷积层 + ReLU + BatchNorm
-//    // batchSize x64*13*13 ---> batchSize*128*6*6
-//    this->layerSequence_.emplace_back(std::make_shared<Conv2D>("conv_layer_4", 64, 128, 3));
-//    if (batchNorm) {
-//        this->layerSequence_.emplace_back(std::make_shared<BatchNorm2D>("vn_layer_4", 128));
-//    }
-//    this->layerSequence_.emplace_back(std::make_shared<ReLU>("relu_layer_4"));
+    //TODO 第三层 卷积层 + ReLU + BatchNorm
+    // batchSize x16x55x55 ---> batchSize *32*27*27
+    this->layerSequence_.emplace_back(std::make_shared<Conv2D>("conv_layer_2", 16, 32, 3));
+    if (batchNorm) {
+        this->layerSequence_.emplace_back(std::make_shared<BatchNorm2D>("vn_layer_2", 32));
+    }
+    this->layerSequence_.emplace_back(std::make_shared<ReLU>("relu_layer_2"));
+
+    //TODO 第四层 卷积层 + ReLU + BatchNorm
+    // batchSize x32x27x27 ---> batchSize*64*13*13
+    this->layerSequence_.emplace_back(std::make_shared<Conv2D>("conv_layer_3", 32, 64, 3));
+    if (batchNorm) {
+        this->layerSequence_.emplace_back(std::make_shared<BatchNorm2D>("vn_layer_3", 64));
+    }
+    this->layerSequence_.emplace_back(std::make_shared<ReLU>("relu_layer_3"));
+
+    //TODO 第五层 卷积层 + ReLU + BatchNorm
+    // batchSize x64*13*13 ---> batchSize*128*6*6
+    this->layerSequence_.emplace_back(std::make_shared<Conv2D>("conv_layer_4", 64, 128, 3));
+    if (batchNorm) {
+        this->layerSequence_.emplace_back(std::make_shared<BatchNorm2D>("vn_layer_4", 128));
+    }
+    this->layerSequence_.emplace_back(std::make_shared<ReLU>("relu_layer_4"));
 
     //TODO 线性连接层
     // batchSize *128*6*6 ---> batchSize * numOfClasses
-    this->layerSequence_.emplace_back(std::make_shared<LinearLayer>("linear_1", 16 * 2 * 2, numOfClasses));
+    this->layerSequence_.emplace_back(std::make_shared<LinearLayer>("linear_1", 128 * 6 * 6, numOfClasses));
 }
 
 std::vector<cnn::tensor> cnn::architectures::AlexNet::forward(const std::vector<tensor> &input) {

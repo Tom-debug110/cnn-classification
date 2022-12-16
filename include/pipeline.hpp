@@ -27,7 +27,7 @@ namespace cnn::pipeline {
         std::uniform_real_distribution<float> engine_;
         std::uniform_real_distribution<float> cropEngine_;
         std::uniform_real_distribution<float> rotateEngine_;
-        std::uniform_real_distribution<int> minusEngine_;
+        std::uniform_int_distribution<int> minusEngine_;
         std::vector<std::pair<std::string, int>> operations_; // 操作列表合集
 
     public:

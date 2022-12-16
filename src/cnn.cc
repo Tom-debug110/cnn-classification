@@ -56,11 +56,7 @@ int main(int argc, char **argv) {
     for (int i = startIters; i < totalIters; ++i) {
 
         const auto sample = trainLoader.generateBatch();
-        //cnn::architectures::printTensor(sample.first);
-//        for (int j = 0; j < sample.first.size(); ++j) {
-//            auto cur = sample.first.at(j);
-//            cnn::pipeline::display(cur->opencvMat(), "ok" + std::to_string(j));
-//        }
+
         const auto out = alexNet.forward(sample.first);
 
         const auto probs = softMax(out);
@@ -80,8 +76,7 @@ int main(int argc, char **argv) {
         trainEvaluator.compute(predict, sample.second);
         ++curIter;
 
-        printf("Train===> [batch %d/%d] [loss %.3f] [Accuracy %4.3f] loss_delta.first %lf\n", i, totalIters, meanLoss / curIter,
-               trainEvaluator.get(),lossDelta.first);
+        printf("\rTrain===> [batch %d/%d] [loss %.3f] [Accuracy %4.3f]", i, totalIters, meanLoss / curIter,trainEvaluator.get());
 
 
         // 开始验证
