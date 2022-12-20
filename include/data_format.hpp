@@ -80,7 +80,7 @@ namespace cnn {
 
         cv::Mat opencvMat(const int ch = 3) const;
 
-        uint32_t Length() const;
+        uint32_t length() const;
 
         std::tuple<uint32_t, uint32_t, uint32_t> shape() const;
 

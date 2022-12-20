@@ -1,5 +1,10 @@
 #include<architectures.hpp>
 
+/**
+ * @brief  线性层正向传播
+ * @param input 上一层的输入
+ * @return 传给下一层的输出，即经过线性层运算之后输出的结果
+ */
 std::vector<cnn::tensor> cnn::architectures::LinearLayer::forward(const std::vector<tensor> &input) {
     // 线性层前向传播
     const int batchSize = input.size();
@@ -18,23 +23,31 @@ std::vector<cnn::tensor> cnn::architectures::LinearLayer::forward(const std::vec
     }
 
 
+    // 输入的每一个 batch
     for (int b = 0; b < batchSize; ++b) {
         dataType *srcPtr = input.at(b)->getData();
         dataType *outPtr = this->output_.at(b)->getData();
 
+        // 每一个卷积核
         for (int oc = 0; oc < outChannels_; ++oc) {
             dataType sumValue = 0;
             for (int ic = 0; ic < inChannels_; ++ic) {
                 sumValue += srcPtr[ic] * weights_[ic * outChannels_ + oc];
             }
 
+            // 输出结果赋值
             outPtr[oc] = sumValue;
-
         }
     }
     return std::vector<tensor>{this->output_};
 }
 
+
+/**
+ * @brief 线性层反向传播
+ * @param delta 下一层传播上来的 delta
+ * @return 传给上一层的 delta
+ */
 std::vector<cnn::tensor> cnn::architectures::LinearLayer::backward(std::vector<tensor> &delta) {
     const int batchSize = delta.size();
     if (this->weightGradients_.empty()) {

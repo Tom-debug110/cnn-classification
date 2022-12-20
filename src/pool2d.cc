@@ -70,7 +70,7 @@ std::vector<cnn::tensor> cnn::architectures::MaxPool2D::backward(std::vector<ten
         this->deltaOutput_.at(b)->setZero();
     }
 
-    const int totalLength = delta.front()->Length();
+    const int totalLength = delta.front()->length();
     for (int b = 0; b < batchSize; ++b) {
         int *maskPtr = this->mask_.at(b).data();
 

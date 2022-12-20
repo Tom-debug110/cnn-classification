@@ -91,7 +91,7 @@ void ReLUTest() {
 
     // 初始化
     cnn::dataType *dataPtr = input.front()->getData();
-    const int length = input.front()->Length();
+    const int length = input.front()->length();
 
     for (int i = 0; i < length; ++i) {
         dataPtr[i] = engine(e);
@@ -134,7 +134,7 @@ void maxPool2DTest() {
 
     // 初始化
     cnn::dataType *dataPtr = input.front()->getData();
-    int length = input.front()->Length();
+    int length = input.front()->length();
 
     for (int i = 0; i < length; ++i) {
         dataPtr[i] = engine(e);
@@ -155,7 +155,7 @@ void maxPool2DTest() {
     shape = {1, 3, 3};
     std::vector<cnn::tensor> delta({std::make_shared<cnn::Tensor3D>(shape)});
 
-    length = delta.front()->Length();
+    length = delta.front()->length();
     for (int i = 0; i < length; ++i) {
         delta.front()->getData()[i] = engine(e);
     }
@@ -180,7 +180,7 @@ void Conv2DTest() {
 
     // 初始化
     cnn::dataType *dataPtr = input.front()->getData();
-    int length = input.front()->Length();
+    int length = input.front()->length();
 
     for (int i = 0; i < length; ++i) {
         dataPtr[i] = engine(e);
@@ -217,7 +217,7 @@ void AlexNetTest() {
 
     // 初始化
     cnn::dataType *dataPtr = input.front()->getData();
-    int length = input.front()->Length();
+    int length = input.front()->length();
 
     for (int i = 0; i < length; ++i) {
         dataPtr[i] = engine(e);

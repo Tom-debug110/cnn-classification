@@ -14,7 +14,7 @@ inline cnn::dataType __exp(const cnn::dataType x) {
 
 std::vector<cnn::tensor> softMax(const std::vector<cnn::tensor> &input) {
     const int batchSize = input.size();
-    const int numOfClasses = input.front()->Length();
+    const int numOfClasses = input.front()->length();
     std::vector<cnn::tensor> output;
     output.reserve(batchSize);
 
@@ -61,7 +61,7 @@ std::pair<cnn::dataType, std::vector<cnn::tensor>>
 crossEntropyBackward(const std::vector<cnn::tensor> &probs, const std::vector<cnn::tensor> &labels) {
     //最小化KL散度等同于最小化交叉熵。
     const int batchSize = labels.size();
-    const int numOfClasses = probs.front()->Length();
+    const int numOfClasses = probs.front()->length();
 
     std::vector<cnn::tensor> delta;
 

@@ -5,7 +5,7 @@ std::vector<cnn::tensor> cnn::architectures::ReLU::forward(const std::vector<ten
     auto shape = input.front()->shape();
     init(batchSize, shape);
 
-    const int length = input.front()->Length();
+    const int length = input.front()->length();
 
     for (int i = 0; i < batchSize; ++i) {
         dataType *src = input.at(i)->getData();
@@ -24,7 +24,7 @@ std::vector<cnn::tensor> cnn::architectures::ReLU::backward(std::vector<tensor> 
     // 同时ReLU 层是原地进行反向传播，也并不需要返回给上一层 delta 的输出
 
     const int batchSize = delta.size();
-    const int length = delta.front()->Length();
+    const int length = delta.front()->length();
 
     for (int i = 0; i < batchSize; ++i) {
         dataType *src = delta.at(i)->getData();
