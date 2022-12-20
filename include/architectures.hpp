@@ -14,6 +14,7 @@ namespace cnn::architectures {
 
     //使用 RAII 原则
     class WithOutGrad {
+    public:
         explicit WithOutGrad() {
             noGrad = true;
         }

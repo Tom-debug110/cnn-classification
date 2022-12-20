@@ -85,7 +85,7 @@ int main(int argc, char **argv) {
         // 开始验证
         if (i % validInters == 0) {
             printf("\n[开始验证]\n\n");
-            cnn::architectures::WithOutGrad guard();
+            cnn::architectures::WithOutGrad guard;
             float meanValidLoss = 0.f;
             ClassificationEvaluator validEvaluator;
 
